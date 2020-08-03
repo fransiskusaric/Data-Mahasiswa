@@ -17,6 +17,9 @@ class CreateTeachersTable extends Migration
             $table->increment('teacher_id')->primary;
             $table->string('name');
             $table->string('address');
+            $table->string('city');
+            $table->date('birth_date');
+            $table->string('phone', 12);
             $table->string('course_id');
             $table->date('in_date');
             $table->date('out_date')->nullable();

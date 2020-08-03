@@ -11,10 +11,13 @@ class StudentsModel extends Model
                             'student_id',
                             'name',
                             'address',
-                            'gen',
+                            'city',
                             'birth_date',
+                            'phone',
                             'grade_id',
                             'major_id',
-                            'classroom'
+                            'classroom',
+                            'enroll_year',
+                            'grad_year'
     ];
 }
