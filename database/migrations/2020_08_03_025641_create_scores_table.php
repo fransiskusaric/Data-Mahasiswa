@@ -14,13 +14,13 @@ class CreateScoresTable extends Migration
     public function up()
     {
         Schema::create('scores', function (Blueprint $table) {
-            $table->increment('score_id')->primary;
-            $table->int('student_id');
-            $table->int('course_id');
-            $table->int('task')->nullable();
-            $table->int('mid_test')->nullable();
-            $table->int('final_test')->nullable();
-            $table->int('score')->nullable();
+            $table->increments('score_id')->primary;
+            $table->integer('student_id');
+            $table->integer('course_id');
+            $table->integer('task')->nullable();
+            $table->integer('mid_test')->nullable();
+            $table->integer('final_test')->nullable();
+            $table->integer('score')->nullable();
         });
     }
 

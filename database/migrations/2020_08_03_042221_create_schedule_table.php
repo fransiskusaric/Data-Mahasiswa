@@ -14,12 +14,12 @@ class CreateScheduleTable extends Migration
     public function up()
     {
         Schema::create('schedule', function (Blueprint $table) {
-            $table->increment('schedule_id')->primary;
-            $table->int('day_id');
-            $table->int('hour_id');
+            $table->increments('schedule_id')->primary;
             $table->string('room_id', 5);
-            $table->string('course_id', 5);
-            $table->int('teacher_id');
+            $table->integer('day_id');
+            $table->integer('hour_id');
+            $table->integer('course_id');
+            $table->integer('teacher_id');
         });
     }
 

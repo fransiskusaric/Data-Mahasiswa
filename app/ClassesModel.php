@@ -9,6 +9,7 @@ class ClassesModel extends Model
     protected $table    = 'classes';
     protected $fillable = [
                             'room_id',
-                            'room'
+                            'room',
+                            'grade_id'
     ];
 }

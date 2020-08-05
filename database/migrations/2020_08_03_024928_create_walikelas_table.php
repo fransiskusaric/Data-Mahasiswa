@@ -14,7 +14,7 @@ class CreateWalikelasTable extends Migration
     public function up()
     {
         Schema::create('walikelas', function (Blueprint $table) {
-            $table->int('teacher_id');
+            $table->integer('teacher_id');
             $table->string('room_id', 5);
         });
     }

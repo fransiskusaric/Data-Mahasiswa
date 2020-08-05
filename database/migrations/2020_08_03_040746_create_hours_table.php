@@ -15,6 +15,7 @@ class CreateHoursTable extends Migration
     {
         Schema::create('hours', function (Blueprint $table) {
             $table->id('hour_id')->primary;
+            $table->integer('grade_id');
             $table->time('hour_from');
             $table->time('hour_to');
         });

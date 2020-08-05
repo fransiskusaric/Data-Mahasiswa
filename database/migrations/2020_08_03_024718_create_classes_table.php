@@ -16,6 +16,7 @@ class CreateClassesTable extends Migration
         Schema::create('classes', function (Blueprint $table) {
             $table->string('room_id', 5)->primary;
             $table->string('room');
+            $table->integer('grade_id');
         });
     }
 
