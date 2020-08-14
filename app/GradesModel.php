@@ -11,4 +11,8 @@ class GradesModel extends Model
                             'grade_id',
                             'grade'
     ];
+
+    public function students(){
+        return $this->hasMany('App\StudentsModel', 'grade_id', 'grade_id');
+    }
 }

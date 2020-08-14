@@ -8,8 +8,8 @@ class StudentsModel extends Model
 {
     protected $table    = 'students';
     protected $fillable = [
-                            'student_id',
                             'name',
+                            'student_id',
                             'address',
                             'city',
                             'birth_date',
@@ -20,4 +20,16 @@ class StudentsModel extends Model
                             'enroll_year',
                             'grad_year'
     ];
+
+    public function grades(){
+        return $this->belongsTo('App\GradesModel', 'grade_id', 'grade_id');
+    }
+
+    public function majors(){
+        return $this->belongsTo('App\MajorsModel', 'major_id', 'major_id');
+    }
+
+    public function classes(){
+        return $this->belongsTo('App\ClassesModel', 'classroom', 'room_id');
+    }
 }

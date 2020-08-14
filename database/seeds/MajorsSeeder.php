@@ -13,13 +13,13 @@ class MajorsSeeder extends Seeder
     {
         DB::table('majors')->insert([
             [
-                'major_id' => '1', 'majors' => 'IPA'
+                'major_id' => '1', 'major' => 'IPA'
             ],
             [
-                'major_id' => '2', 'majors' => 'IPS'
+                'major_id' => '2', 'major' => 'IPS'
             ],
             [
-                'major_id' => '3', 'majors' => 'BAHASA'
+                'major_id' => '3', 'major' => 'BAHASA'
             ]
         ]);
     }

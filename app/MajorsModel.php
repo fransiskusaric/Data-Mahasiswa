@@ -11,4 +11,8 @@ class MajorsModel extends Model
                             'major_id',
                             'major'
     ];
+
+    public function students(){
+        return $this->hasMany('App\StudentsModel', 'major_id', 'major_id');
+    }
 }

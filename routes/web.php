@@ -14,25 +14,34 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('homepage');
 });
 
-Route::resource('/mahasiswa', 'mahasiswacontroller');
+Route::post('importstudent', 'DatasiswaController@importstudents');
+Route::post('importteacher', 'DatasiswaController@importteachers');
 
-Route::get('importView', 'DatabaseController@importView');
-Route::post('import', 'DatabaseController@import')->name('import');
+Route::get('/studentinformation', 'DatasiswaController@studentpage');
+Route::get('/studentinformation/fetch_student', 'DatasiswaController@fetch_student');
 
-Route::group([], function(){
-    Route::get('search', 'mahasiswacontroller@index');
-    Route::post('mahasiswaview', 'mahasiswacontroller@mahasiswarequest')->name('mahasiswarequest');
-});
+Route::get('/teacherinformation', 'DatasiswaController@teacherpage');
+Route::get('/teacherinformation/fetch_teacher', 'DatasiswaController@fetch_teacher');
 
-Route::get('editMhs/{id}', 'mahasiswacontroller@editMhs');
-Route::post('updateMhs', 'mahasiswacontroller@updateMhs');
+// Route::resource('/mahasiswa', 'mahasiswacontroller');
 
-Route::get('createMhs', 'mahasiswacontroller@createMhs');
-Route::post('storeData', 'mahasiswacontroller@storeData');
+// Route::get('importView', 'DatabaseController@importView');
+// Route::post('import', 'DatabaseController@import')->name('import');
 
-Route::get('deleteMhs/{id}', 'mahasiswacontroller@deleteMhs');
+// Route::group([], function(){
+//     Route::get('search', 'mahasiswacontroller@index');
+//     Route::post('mahasiswaview', 'mahasiswacontroller@mahasiswarequest')->name('mahasiswarequest');
+// });
 
-Route::get('filterMhs/{TglFilter}/{TglMasuk}/{TglKeluar}', 'mahasiswacontroller@index');
+// Route::get('editMhs/{id}', 'mahasiswacontroller@editMhs');
+// Route::post('updateMhs', 'mahasiswacontroller@updateMhs');
+
+// Route::get('createMhs', 'mahasiswacontroller@createMhs');
+// Route::post('storeData', 'mahasiswacontroller@storeData');
+
+// Route::get('deleteMhs/{id}', 'mahasiswacontroller@deleteMhs');
+
+// Route::get('filterMhs/{TglFilter}/{TglMasuk}/{TglKeluar}', 'mahasiswacontroller@index');

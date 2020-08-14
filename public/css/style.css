@@ -1,4 +1,5 @@
-table{
+/* table */
+table {
     border: 2px solid #ccc;
     width: 100%;
     margin: 0;
@@ -8,11 +9,11 @@ table{
     border-color: black;
 }
 
-table thead{
+table thead {
     background-color: #DCDCDC;
 }
 
-table tr{
+table tr {
     border: 1px solid #ddd;
     padding: 5px;
 }
@@ -21,23 +22,32 @@ table tr:nth-child(even) {
     background-color: #ECECEC;
 }
 
-table th, table td{
+table tr:nth-child(odd) {
+    background-color: white;
+}
+
+table th, table td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
     border-color: black;
 }
 
-table th{
+table th {
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 12px;
     letter-spacing: 1px;
+}
+
+table td {
+    font-size: 12px;;
 }
 
 h1{
     text-align: center;
 }
 
+/* column divider */
 .column {
     float: left;
     padding: 10px;
@@ -65,14 +75,12 @@ h1{
     }
 }
 
-.gainsboro{
+/* background color */
+.gainsboro {
     background-color: #FCFCFC;
 }
 
-.black{
-    background-color: black;
-}
-
+/* dropdown */
 .dropbtn {
     background-color: #286EB4;
     color: white;
@@ -96,6 +104,7 @@ h1{
     background-color: #DADADA;
 }
 
+/* search box */
 #search {
     box-sizing: border-box;
     background-image: url('searchicon.png');
@@ -135,6 +144,7 @@ h1{
 
 .show {display: block;}
 
+/* icon */
 .icon-img {
     cursor: pointer;
 }
@@ -153,6 +163,7 @@ h1{
     min-width: 40px; 
 } 
   
+/* input & form */
 .input-field { 
     width: 100%; 
     padding: 10px; 
@@ -171,8 +182,9 @@ h1{
     color: #f00
 }
 
+/* span close button */
 .close-md {
-    color: white;
+    color: grey;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -182,4 +194,131 @@ h1{
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 240px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #c3fffc;
+    margin: auto;
+    padding: 16px;
+    border: 1px solid #888;
+    width: 32%;
+}
+
+/* top navigation */
+.topnav {
+    overflow: hidden;
+    background-color: #000000;
+    margin-left: 160px;
+    height: 60px;
+    border-bottom: 1px solid #c3fffc;
+}
+  
+.topnav a {
+    float: right;
+    background-color: black;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    border: 0px;
+}
+  
+.topnav a:hover {
+    background-color: green;
+    color: white;
+}
+
+/* fixed sidebar */
+.sidenav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: black;
+    overflow-x: hidden;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+}
+
+.sidenav a:hover, a:active {
+    color: white;
+}
+
+/* main content */
+.main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+/* snackbar */
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
 }

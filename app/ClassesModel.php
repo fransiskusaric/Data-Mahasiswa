@@ -12,4 +12,8 @@ class ClassesModel extends Model
                             'room',
                             'grade_id'
     ];
+
+    public function students(){
+        return $this->hasMany('App\StudentsModel', 'room_id', 'classroom');
+    }
 }

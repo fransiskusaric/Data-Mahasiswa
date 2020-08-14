@@ -12,4 +12,8 @@ class CoursesModel extends Model
                             'course',
                             'note'
     ];
+
+    public function teachers(){
+        return $this->hasMany('App\TeachersModel', 'course_id', 'course_id');
+    }
 }
