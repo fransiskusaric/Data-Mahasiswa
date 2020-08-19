@@ -31,9 +31,9 @@
                     <td>@if(!empty($row->TglKeluar))
                         {{\Carbon\Carbon::parse($row->out_date)->format('d-m-Y')}}
                     @endif</td>
-                    <td><a href="/editMhs/{{$row['id']}}"><img width="24" height="24" src="/images/icon-editor.png"/></a>
+                    <td><a href="/editMhs/{{$row['id']}}"><img width="20" height="20" src="/images/icon-editor.png"/></a>
                         <a>  |  </a>
-                        <a href="/deleteMhs/{{$row['id']}}"><img width="24" height="24" src='/images/delete-button.png'/></a></td>
+                        <a href="/deleteMhs/{{$row['id']}}"><img width="20" height="20" src='/images/delete-button.png'/></a></td>
                 </tr>
             @endforeach
         </tbody>

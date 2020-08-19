@@ -17,12 +17,11 @@ class CreateScoresTable extends Migration
             $table->increments('score_id')->primary;
             $table->integer('student_id');
             $table->integer('course_id');
-            $table->integer('semester');
-            $table->integer('grade_id');
             $table->integer('task')->nullable();
             $table->integer('mid_test')->nullable();
             $table->integer('final_test')->nullable();
             $table->integer('score')->nullable();
+            $table->timestamps();
         });
     }
 

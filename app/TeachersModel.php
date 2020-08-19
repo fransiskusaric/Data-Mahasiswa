@@ -22,4 +22,8 @@ class TeachersModel extends Model
     public function courses(){
         return $this->belongsTo('App\CoursesModel', 'course_id', 'course_id');
     }
+
+    public function classes(){
+        return $this->belongsTo('App\ClassesModel', 'teacher_id', 'teacher_id');
+    }
 }

@@ -17,6 +17,7 @@ class CreateClassesTable extends Migration
             $table->string('room_id', 5)->primary;
             $table->string('room');
             $table->integer('grade_id');
+            $table->char('teacher_id');
         });
     }
 
