@@ -26,6 +26,12 @@ Route::get('/studentinformation/fetch_student', 'DatasiswaController@fetch_stude
 Route::get('/teacherinformation', 'DatasiswaController@teacherpage');
 Route::get('/teacherinformation/fetch_teacher', 'DatasiswaController@fetch_teacher');
 
+Route::get('/studentinformation/editstudent/{id}', 'DatasiswaController@editstudent');
+Route::post('/updatestudent', 'DatasiswaController@updatestudent');
+
+Route::get('/teacherinformation/editteacher/{id}', 'DatasiswaController@editteacher');
+Route::post('/updateteacher', 'DatasiswaController@updateteacher');
+
 // Route::resource('/mahasiswa', 'mahasiswacontroller');
 
 // Route::get('importView', 'DatabaseController@importView');

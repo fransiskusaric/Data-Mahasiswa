@@ -6,19 +6,30 @@ use Illuminate\Database\Eloquent\Model;
 
 class ClassesModel extends Model
 {
-    protected $table    = 'classes';
+    protected $table    = 'Classes';
+    protected $primaryKey = 'class_id';
     protected $fillable = [
-                            'room_id',
-                            'room',
+                            'class_id',
                             'grade_id',
-                            'teacher_id'
+                            'classroom',
+                            'major_id',
+                            'teacher_id',
+                            'qty'
     ];
 
-    public function students(){
-        return $this->hasMany('App\StudentsModel', 'room_id', 'classroom');
+    public function grades() {
+        return $this->belongsTo('App\MGradesModel', 'grade_id', 'grade_id');
     }
 
-    public function walikelas(){
+    public function majors() {
+        return $this->belongsTo('App\MMajorsModel', 'major_id', 'major_id');
+    }
+
+    public function students() {
+        return $this->belongsToMany('App\StudentGradeModel', 'Student_Class');
+    }
+
+    public function teachers() {
         return $this->hasOne('App\TeachersModel', 'teacher_id', 'teacher_id');
     }
 }

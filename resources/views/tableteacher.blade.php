@@ -1,4 +1,4 @@
-<div style="font-size:14px">
+<div class="page" style="font-size:14px">
     {{ $list_teacher->links() }}
 </div>
 <div class="table-responsive">
@@ -31,7 +31,7 @@
                     <td>@if(!empty($row->TglKeluar))
                         {{\Carbon\Carbon::parse($row->out_date)->format('d-m-Y')}}
                     @endif</td>
-                    <td><a href="/editMhs/{{$row['id']}}"><img width="20" height="20" src="/images/icon-editor.png"/></a>
+                    <td><a href="/teacherinformation/editteacher/{{$row['t_id']}}"><img width="20" height="20" src="/images/icon-editor.png"/></a>
                         <a>  |  </a>
                         <a href="/deleteMhs/{{$row['id']}}"><img width="20" height="20" src='/images/delete-button.png'/></a></td>
                 </tr>

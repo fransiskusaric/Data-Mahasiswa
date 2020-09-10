@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TeachersModel extends Model
 {
     protected $table    = 'teachers';
+    protected $primaryKey = 't_id';
     protected $fillable = [
                             'name',
                             'teacher_id',
@@ -20,7 +21,11 @@ class TeachersModel extends Model
     ];
 
     public function courses(){
-        return $this->belongsTo('App\CoursesModel', 'course_id', 'course_id');
+        return $this->belongsTo('App\MCoursesModel', 'course_id', 'course_id');
+    }
+
+    public function grades(){
+        return $this->belongsTo('App\MGradesModel', 'grade_id', 'grade_id');
     }
 
     public function classes(){

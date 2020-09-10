@@ -228,19 +228,28 @@ h1{
     border-bottom: 1px solid #c3fffc;
 }
   
-.topnav a {
+.topnav button {
     float: right;
     background-color: black;
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
+    padding: 16px 16px;
     text-decoration: none;
     font-size: 17px;
     border: 0px;
 }
   
-.topnav a:hover {
+.topnav button:hover {
     background-color: green;
+    color: white;
+}
+
+button.btn-import {
+    background-color: blue;
+    padding: 4px;
+}
+button.btn-import:hover {
+    background-color: #0000aa;
     color: white;
 }
 

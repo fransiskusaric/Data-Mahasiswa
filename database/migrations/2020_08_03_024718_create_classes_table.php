@@ -13,11 +13,17 @@ class CreateClassesTable extends Migration
      */
     public function up()
     {
-        Schema::create('classes', function (Blueprint $table) {
-            $table->string('room_id', 5)->primary;
-            $table->string('room');
-            $table->integer('grade_id');
-            $table->char('teacher_id');
+        Schema::create('Classes', function (Blueprint $table) {
+            $table->string('class_id', 5)->primary();
+            $table->integer('grade_id')->unsigned();
+            $table->string('classroom');
+            $table->integer('major_id')->unsigned()->nullable();
+            $table->char('teacher_id', 5)->unsigned();
+            $table->integer('qty');
+            $table->timestamps();
+            $table->foreign('grade_id')->references('grade_id')->on('M_Grades')->onDelete('cascade');
+            $table->foreign('grade_id')->references('major_id')->on('M_Majors')->onDelete('cascade');
+            $table->foreign('grade_id')->references('teacher_id')->on('M_Teachers')->onDelete('cascade');
         });
     }
 
@@ -28,6 +34,6 @@ class CreateClassesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('classes');
+        Schema::dropIfExists('Classes');
     }
 }

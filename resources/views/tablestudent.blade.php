@@ -1,4 +1,4 @@
-<div style="font-size:14px">
+<div class="page" style="font-size:14px">
     {{ $list_student->links() }}
 </div>
 <div class="table-responsive">
@@ -27,9 +27,9 @@
                     <td>{{$row->phone}}</td>
                     <td><?php echo $row->classes->room ?? '' ?></td>
                     <td>{{\Carbon\Carbon::parse($row->enroll_year)->format('Y')}}</td>
-                    <td><a href="/editMhs/{{$row['id']}}"><img width="20" height="20" src="/images/icon-editor.png"/></a>
+                    <td><a href="/studentinformation/editstudent/{{$row['s_id']}}" class="edit"><img width="20" height="20" src="/images/icon-editor.png"/></a>
                         <a>  |  </a>
-                        <a href="/deleteMhs/{{$row['id']}}"><img width="20" height="20" src='/images/delete-button.png'/></a></td>
+                        <a href="/deleteMhs/{{$row['id']}}" class="delete"><img width="20" height="20" src='/images/delete-button.png'/></a></td>
                 </tr>
             @endforeach
         </tbody>
