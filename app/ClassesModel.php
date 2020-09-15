@@ -11,22 +11,18 @@ class ClassesModel extends Model
     protected $fillable = [
                             'class_id',
                             'grade_id',
+                            'subgrade_id',
                             'classroom',
                             'major_id',
-                            'teacher_id',
-                            'qty'
+                            'teacher_id'
     ];
 
-    public function grades() {
-        return $this->belongsTo('App\MGradesModel', 'grade_id', 'grade_id');
-    }
-
     public function majors() {
-        return $this->belongsTo('App\MMajorsModel', 'major_id', 'major_id');
+        return $this->hasOne('App\MMajorsModel', 'major_id', 'major_id');
     }
 
-    public function students() {
-        return $this->belongsToMany('App\StudentGradeModel', 'Student_Class');
+    public function studentSubgrade() {
+        return $this->belongsToMany('App\StudentSubgradeModel', 'Student_Class');
     }
 
     public function teachers() {

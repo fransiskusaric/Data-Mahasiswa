@@ -15,10 +15,10 @@ class StudentClass extends Migration
     {
         Schema::create('Student_Class', function (Blueprint $table) {
             $table->id('student_class_id')->primary();
-            $table->integer('student_grade_id')->unsigned();
+            $table->integer('student_subgrade_id')->unsigned();
             $table->string('class_id', 5);
             $table->timestamps();
-            $table->foreign('student_grade_id')->references('student_grade_id')->on('Student_Grade')->onDelete('cascade');
+            $table->foreign('student_subgrade_id')->references('student_subgrade_id')->on('Student_Subgrade')->onDelete('cascade');
             $table->foreign('class_id')->references('class_id')->on('Classes')->onDelete('cascade');
         });
     }

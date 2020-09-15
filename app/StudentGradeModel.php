@@ -15,7 +15,7 @@ class StudentGradeModel extends Model
                             'grade_date'
     ];
 
-    public function classes() {
-        return $this->belongsToMany('App\ClassesModel', 'Student_Class');
+    public function subgrades() {
+        return $this->belongsToMany('App\MSubgradesModel', 'Student_Subgrade');
     }
 }

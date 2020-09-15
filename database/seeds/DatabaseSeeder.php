@@ -13,12 +13,11 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             ClassesSeeder::class,
-            CoursesSeeder::class,
-            DaysSeeder::class,
-            GradesSeeder::class,
-            HoursSeeder::class,
-            JurusanSeeder::class,
-            MajorsSeeder::class
+            CourseGradeSeeder::class,
+            MCoursesSeeder::class,
+            MGradesSeeder::class,
+            MMajorsSeeder::class,
+            MSubgradesSeeder::class
         ]);
     }
 }

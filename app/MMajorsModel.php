@@ -14,6 +14,6 @@ class MMajorsModel extends Model
     ];
 
     public function classes() {
-        return $this->hasMany('App\ClassesModel', 'major_id', 'major_id');
+        return $this->belongsTo('App\ClassesModel', 'major_id', 'major_id');
     }
 }

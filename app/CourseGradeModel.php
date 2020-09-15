@@ -10,7 +10,8 @@ class CourseGradeModel extends Model
     protected $primaryKey = 'course_grade_id';
     protected $fillable = [
                             'course_id',
-                            'grade_id'
+                            'grade_id',
+                            'major_id'
     ];
 
     public function studentClass() {

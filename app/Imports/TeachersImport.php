@@ -23,7 +23,8 @@ class TeachersImport implements ToModel
                 'birth_date'=> $row[4],
                 'phone'     => $row[5],
                 'course_id' => $row[6],
-                'in_date'   => $row[7]
+                'grade_id'  => $row[7],
+                'in_date'   => $row[8]
             ]);
         }
     }

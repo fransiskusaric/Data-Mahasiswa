@@ -17,8 +17,8 @@ class MGradesModel extends Model
         return $this->belongsToMany('App\MCoursesModel', 'Course_Grade');
     }
 
-    public function classes() {
-        return $this->hasMany('App\ClassesModel', 'grade_id', 'grade_id');
+    public function subgrades() {
+        return $this->belongsToMany('App\MSubgradesModel', 'Classes');
     }
 
     public function students() {

@@ -9,7 +9,7 @@ class StudentClassModel extends Model
     protected $table    = 'Student_Class';
     protected $primaryKey = 'student_class_id';
     protected $fillable = [
-                            'student_grade_id',
+                            'student_subgrade_id',
                             'class_id'
     ];
 
