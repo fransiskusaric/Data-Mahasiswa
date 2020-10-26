@@ -16,12 +16,13 @@ class TeachersModel extends Model
                             'birth_date',
                             'phone',
                             'course_id',
+                            'grade_id',
                             'in_date',
                             'out_date'
     ];
 
     public function courses(){
-        return $this->belongsTo('App\MCoursesModel', 'course_id', 'course_id');
+        return $this->belongsTo('App\MCoursesModel', 'course_id');
     }
 
     public function grades(){

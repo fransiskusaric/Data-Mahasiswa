@@ -3,13 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\TeachersModel;
-use App\StudentsModel;
 use App\ScoresModel;
-use App\CoursesModel;
-use App\GradesModel;
-use App\MajorsModel;
+use App\MCoursesModel;
+use App\MGradesModel;
+use App\MMajorsModel;
+use App\MStudentsModel;
+use App\MSubgradesModel;
+use App\CourseGradeModel;
 use App\ClassesModel;
+use App\StudentGradeModel;
+use App\StudentSubgradeModel;
+use App\StudentClassModel;
+use App\StudentScoresModel;
+use App\StudentCourseScoreModel;
+use App\TeachersModel;
 use App\Imports\StudentsImport;
 use App\Imports\TeachersImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -182,7 +189,8 @@ class DatasiswaController extends Controller
     {
         if($request->ajax()) {
             $number = $request->rows;
-            $list_teacher = TeachersModel::with(['courses'])->paginate($number);
+            $search = $request->search;
+            $list_teacher = TeachersModel::with(['courses'])->where('name', 'LIKE', '%'.$search.'%')->paginate($number);
             return view('tableteacher', ['list_teacher' => $list_teacher])->render();
         } else {
             $list_teacher = TeachersModel::with(['courses'])->paginate(20);
@@ -195,7 +203,8 @@ class DatasiswaController extends Controller
     {
         if($request->ajax()) {
             $number = $request->rows;
-            $list_teacher = TeachersModel::with(['courses'])->paginate($number);
+            $search = $request->search;
+            $list_teacher = TeachersModel::with(['courses'])->where('name', 'LIKE', '%'.$search.'%')->paginate($number);
             return view('tableteacher', ['list_teacher' => $list_teacher])->render();
         }
     }
@@ -203,27 +212,29 @@ class DatasiswaController extends Controller
     public function editteacher($id)
     {
         $teacher = TeachersModel::where('t_id', $id)->first();
-        $course = CoursesModel::all()->sortBy('course_id');
+        $course = MCoursesModel::all();
+        $grade = MGradesModel::all();
 
-        return view('editteacher', ['teacher' => $teacher, 'course' => $course]);
+        return view('editteacher', ['teacher' => $teacher, 'course' => $course, 'grade' => $grade]);
     }
 
     public function updateteacher(Request $request)
     {
         $teacher = TeachersModel::where('t_id', $request->t_id)->first();
         $teacher->name = $request->name;
-        $teacher->student_id = $request->student_id;
+        $teacher->teacher_id = $request->teacher_id;
         $teacher->address = $request->address;
         $teacher->city = $request->city;
         $teacher->birth_date = $request->birth_date;
         $teacher->phone = $request->phone;
         $teacher->course_id = $request->course_id;
+        $teacher->grade_id = $request->grade_id;
         $teacher->in_date = $request->in_date;
         $teacher->out_date = $request->out_date;
 
         $teacher->save();
 
-        return redirect("/teacherinformation");
+        return redirect('/teacherinformation')->with('success', 'Teacher updated!');
     }
 
     public function importteachers(Request $request)
@@ -235,5 +246,40 @@ class DatasiswaController extends Controller
         Excel::import(new TeachersImport, request()->file('Teachers'));
 
         return redirect()->back();
+    }
+
+    public function createteacher()
+    {
+        $courses = MCoursesModel::all()->sortBy('course');
+        $grades = MGradesModel::all();
+        return view('createteacher', ['course' => $courses, 'grade' => $grades]);
+    }
+
+    public function saveteacher()
+    {
+        $teacher = new TeachersModel();
+        $teacher->name = request('name');
+        $teacher->teacher_id = request('teacher_id');
+        $teacher->address = request('address');
+        $teacher->city = request('city');
+        $teacher->birth_date = request('birth_date');
+        $teacher->phone = request('phone');
+        $teacher->course_id = request('course_id');
+        $teacher->grade_id = request('grade_id');
+        $teacher->in_date = request('in_date');
+        $teacher->out_date = request('out_date');
+        
+        $teacher->save();
+        return redirect('/teacherinformation')->with('success', 'New teacher added successfully!');
+    }
+
+    public function deleteteacher($id=0) 
+    {
+        if($id != 0){
+            // Delete
+            DB::table('teachers')->where('t_id', '=', $id)->delete();
+        }
+        
+        return redirect('/teacherinformation')->with('delete', 'Teacher deleted!');
     }
 }

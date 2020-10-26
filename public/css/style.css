@@ -9,22 +9,16 @@ table {
     border-color: black;
 }
 
-table thead {
-    background-color: #DCDCDC;
-}
+table thead { background-color: #DCDCDC; }
 
 table tr {
     border: 1px solid #ddd;
     padding: 5px;
 }
 
-table tr:nth-child(even) {
-    background-color: #ECECEC;
-}
+table tr:nth-child(even) { background-color: #ECECEC; }
 
-table tr:nth-child(odd) {
-    background-color: white;
-}
+table tr:nth-child(odd) { background-color: white; }
 
 table th, table td {
     border: 1px solid #ddd;
@@ -39,13 +33,9 @@ table th {
     letter-spacing: 1px;
 }
 
-table td {
-    font-size: 12px;;
-}
+table td { font-size: 12px; }
 
-h1{
-    text-align: center;
-}
+h1 { text-align: center; }
 
 /* column divider */
 .column {
@@ -53,13 +43,18 @@ h1{
     padding: 10px;
 }
 
-.column.small {
-    width: 60%
+.column.small { width: 60% }
+
+.column.big { width: 40%; }
+
+/* grid */
+.grid-container {
+  display: grid;
+  grid-column-gap: 20px;
+  grid-template-columns: auto auto;
+  padding: 20px;
 }
 
-.column.big {
-    width: 40%;
-}
 
 /* Clear floats after the columns */
 .row:after {
@@ -70,15 +65,11 @@ h1{
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other on smaller screens (600px wide or less) */
 @media screen and (max-width: 600px) {
-    .column.side, .column.big {
-        width: 100%;
-    }
+    .column.side, .column.big { width: 100%; }
 }
 
 /* background color */
-.gainsboro {
-    background-color: #FCFCFC;
-}
+.gainsboro { background-color: #FCFCFC; }
 
 /* dropdown */
 .dropbtn {
@@ -90,9 +81,7 @@ h1{
     cursor: pointer;
 }
 
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #0052B4;
-}
+.dropbtn:hover, .dropbtn:focus { background-color: #0052B4; }
 
 .btn-white {
     background-color: white;
@@ -100,9 +89,7 @@ h1{
     cursor: pointer;
 }
 
-.btn-white:hover, .btn-white:focus {
-    background-color: #DADADA;
-}
+.btn-white:hover, .btn-white:focus { background-color: #DADADA; }
 
 /* search box */
 #search {
@@ -116,7 +103,7 @@ h1{
     border-bottom: 1px solid #ddd;
 }
 
-#search:focus {outline: 3px solid #ddd;}
+#search:focus { outline: 3px solid #ddd; }
 
 /* .dropdown {
     position: relative;
@@ -142,16 +129,12 @@ h1{
 
 .dropdown input:hover {background-color: #ddd;} */
 
-.show {display: block;}
+.show { display: block; }
 
 /* icon */
-.icon-img {
-    cursor: pointer;
-}
+.icon-img { cursor: pointer; }
 
-.input-icons i { 
-    position: absolute; 
-} 
+.input-icons i { position: absolute; } 
   
 .input-icons { 
     width: 100%; 
@@ -170,17 +153,17 @@ h1{
     text-align: center; 
 } 
 
-.input-group{
-    position: relative;
-}
+.input-group { position: relative; }
 
-.input-group::after{
+.input-group::after {
     content: '*';
     position: absolute;
     top: 1px;
     right: 5px;
     color: #f00
 }
+
+.form-group { padding-top: 12px; }
 
 /* span close button */
 .close-md {
@@ -223,10 +206,21 @@ h1{
 .topnav {
     overflow: hidden;
     background-color: #000000;
-    margin-left: 160px;
     height: 60px;
+    width: 100%;
     border-bottom: 1px solid #c3fffc;
 }
+
+.topnav #myMenu {
+    float: none;
+    cursor: pointer;
+    color: white;
+    font-size: 30px;
+    padding: 0px 0px 0px 8px;
+    outline: none;
+}
+
+.topnav #myMenu:hover { background-color: transparent; }
   
 .topnav button {
     float: right;
@@ -253,35 +247,42 @@ button.btn-import:hover {
     color: white;
 }
 
-/* fixed sidebar */
+/* side nav menu */
 .sidenav {
     height: 100%;
-    width: 160px;
+    width: 0;
     position: fixed;
     z-index: 1;
-    top: 0;
+    top: 10;
     left: 0;
-    background-color: black;
+    background-color: #111;
     overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 20px;
 }
 
 .sidenav a {
-    padding: 6px 8px 6px 16px;
+    padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 25px;
     color: #818181;
     display: block;
+    transition: 0.3s;
 }
 
-.sidenav a:hover, a:active {
-    color: white;
+.sidenav a:hover { color: #f1f1f1; }
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
 
-/* main content */
-.main {
-    margin-left: 160px; /* Same as the width of the sidenav */
-    font-size: 28px; /* Increased text to enable scrolling */
-    padding: 0px 10px;
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
 }
 
 @media screen and (max-height: 450px) {
@@ -331,3 +332,49 @@ button.btn-import:hover {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
 }
+
+/* Paging */
+.page { font-size: 14px; }
+
+.bot {
+    display: flex;
+    justify-content: center;
+    padding-top: 16px;
+}
+
+/* Button Create */
+.btn-tambah { 
+    background-image: url('/images/add-icon.png'); 
+    background-size: cover; 
+    background-color: #819399;
+    width: 36px; 
+    height: 36px; 
+    font-size: 2rem; 
+    float: right;
+}
+
+.btn-tambah:hover{
+    width: 40px; 
+    height: 40px; 
+}
+
+/* Flash Message / Alert Box */
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+}
+  
+.alert.success { background-color: #4CAF50; }
+
+.alert button {
+    background-color: transparent;
+    border: transparent;
+    float: right;
+}
+
+/* Delete */
+.delete { cursor: pointer; }

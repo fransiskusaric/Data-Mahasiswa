@@ -14,7 +14,7 @@ class MSubgrades extends Migration
     public function up()
     {
         Schema::create('M_Subgrades', function (Blueprint $table) {
-            $table->id('subgrade_id')->primary();
+            $table->id('subgrade_id');
         });
     }
 

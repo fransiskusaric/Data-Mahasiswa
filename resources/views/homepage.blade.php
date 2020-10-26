@@ -10,19 +10,29 @@
 </head>
 <body style="background-color: #819399">
     @include('topnav')
-    <div class="sidenav">
-        <div style="width:100%;height:60px;border-bottom: 1px solid rgb(195, 255, 252);">
-            <h1><a href="/"><img width="120" height="50" src="/images/logo-project.png"/></a></h1>
+    <div id="main">
+        <h1>Website Data Siswa<h1>
+        <div class="grid-container">
+            <p id="teacherShort">Gambar guru</p>
+            <p id="studentShort">Gambar student</p>
         </div>
-        <div style="padding-top:20px">
-            <a href="/teacherinformation">Teacher Information</a>
-            <a href="/studentinformation">Student Information</a>
-            <a href="#clients">Schedule</a>
-        </div>
-    </div>
-    <div class="main">
-        <p style="text-align:center">Isi homepage<p>
     </div>
     <script type="text/javascript" src="{{ asset('js/topnav.js')}}"></script>
+    <script type="text/javascript"> //open menu
+        var button = document.getElementById("myMenu"), count = 0;
+        button.onclick = function() {
+            count += 1;
+            if(count % 2 == 1) openNav();
+            else closeNav();
+        };
+    </script>
+    <script> //link gui
+        document.getElementById("teacherShort").addEventListener("click", function() {
+            window.location.href ="/teacherinformation"
+        });
+        document.getElementById("studentShort").addEventListener("click", function() {
+            window.location.href ="/studentinformation"
+        });
+    </script>
 </body>
 </html>

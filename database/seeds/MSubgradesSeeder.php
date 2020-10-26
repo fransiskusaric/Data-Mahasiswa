@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class MSubgrades extends Seeder
+class MSubgradesSeeder extends Seeder
 {
     /**
      * Run the database seeds.

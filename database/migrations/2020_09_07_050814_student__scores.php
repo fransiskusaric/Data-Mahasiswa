@@ -14,12 +14,10 @@ class StudentScores extends Migration
     public function up()
     {
         Schema::create('Student_Scores', function (Blueprint $table) {
-            $table->id('score_id')->primary();
+            $table->increments('score_id');
             $table->integer('student_class_id')->unsigned();
             $table->integer('course_grade_id')->unsigned();
             $table->timestamps();
-            $table->foreign('student_class_id')->references('student_class_id')->on('Student_Class')->onDelete('cascade');
-            $table->foreign('course_grade_id')->references('course_grade_id')->on('Course_Grade')->onDelete('cascade');
         });
     }
 

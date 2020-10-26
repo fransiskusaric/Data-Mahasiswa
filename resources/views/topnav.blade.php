@@ -1,4 +1,6 @@
 <div class="topnav">
+    <a style="padding-left:10px" href="/"><img width="120" height="50" src="/images/logo-project.png"/></a>
+    <button id="myMenu"><span>&#9776;</span></button>
     <button id="student" class="btn myBtn" onclick="openModal(this.id)">Import Student</button>
     <div class="modal">
         <div class="modal-content">
@@ -22,4 +24,9 @@
         </div>
     </div>
     <div id="snackbar">Import Successfully</div>
+</div>
+<div id="mySidenav" class="sidenav">
+    <a id="ateacher" href="/teacherinformation">Teacher Information</a>
+    <a id="astudent" href="/studentinformation">Student Information</a>
+    <a id="" href="#clients">Schedule</a>
 </div>

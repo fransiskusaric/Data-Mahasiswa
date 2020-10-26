@@ -14,7 +14,7 @@ class MStudents extends Migration
     public function up()
     {
         Schema::create('M_Students', function (Blueprint $table) {
-            $table->increments('s_id')->primary();
+            $table->increments('s_id');
             $table->string('name');
             $table->char('student_id', 5)->unique();
             $table->string('address');

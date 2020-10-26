@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class MMajors extends Seeder
+class MMajorsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class MMajors extends Seeder
      */
     public function run()
     {
-        DB::table('MMajors')->insert([
+        DB::table('M_Majors')->insert([
             [
                 'major_id' => '1', 'major' => 'IPA'
             ],

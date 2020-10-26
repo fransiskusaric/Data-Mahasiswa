@@ -11,8 +11,6 @@
                 <th>Kota <img onclick="sortTable(3, true)" class="icon-img" width="12" height="12" src="/images/sort.png" /></th>
                 <th>Tanggal Lahir <img onclick="sortTable(4, true)" class="icon-img" width="12" height="12" src="/images/sort.png" /></th>
                 <th>No Telp <img onclick="sortTable(5, true)" class="icon-img" width="12" height="12" src="/images/sort.png" /></th>
-                <th>Kelas <img onclick="sortTable(6, true)" class="icon-img" width="12" height="12" src="/images/sort.png" /></th>
-                <th>Angkatan <img onclick="sortTable(7, true)" class="icon-img" width="12" height="12" src="/images/sort.png" /></th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -25,8 +23,6 @@
                     <td>{{$row->city}}</td>
                     <td>{{\Carbon\Carbon::parse($row->birth_date)->format('d-m-Y')}}</td>
                     <td>{{$row->phone}}</td>
-                    <td><?php echo $row->classes->room ?? '' ?></td>
-                    <td>{{\Carbon\Carbon::parse($row->enroll_year)->format('Y')}}</td>
                     <td><a href="/studentinformation/editstudent/{{$row['s_id']}}" class="edit"><img width="20" height="20" src="/images/icon-editor.png"/></a>
                         <a>  |  </a>
                         <a href="/deleteMhs/{{$row['id']}}" class="delete"><img width="20" height="20" src='/images/delete-button.png'/></a></td>

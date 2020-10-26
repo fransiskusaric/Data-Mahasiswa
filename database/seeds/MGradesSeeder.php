@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class MGrades extends Seeder
+class MGradesSeeder extends Seeder
 {
     /**
      * Run the database seeds.

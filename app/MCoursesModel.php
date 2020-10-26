@@ -16,4 +16,8 @@ class MCoursesModel extends Model
     public function grades() {
         return $this->belongsToMany('App\MGradesModel', 'Course_Grade');
     }
+
+    public function teachers() {
+        return $this->hasMany('App\TeachersModel', 'course_id');
+    }
 }

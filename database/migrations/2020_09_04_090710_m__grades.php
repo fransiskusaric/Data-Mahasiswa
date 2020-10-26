@@ -14,7 +14,7 @@ class MGrades extends Migration
     public function up()
     {
         Schema::create('M_Grades', function (Blueprint $table) {
-            $table->id('grade_id')->primary();
+            $table->id('grade_id');
             $table->string('grade');
         });
     }

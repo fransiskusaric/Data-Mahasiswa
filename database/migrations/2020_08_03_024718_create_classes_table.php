@@ -19,13 +19,9 @@ class CreateClassesTable extends Migration
             $table->integer('subgrade_id')->unsigned();
             $table->string('classroom');
             $table->integer('major_id')->unsigned()->nullable();
-            $table->char('teacher_id', 5)->unsigned();
-            $table->integer('qty');
+            $table->char('teacher_id', 5);
+            $table->integer('qty')->default('0');
             $table->timestamps();
-            $table->foreign('grade_id')->references('grade_id')->on('M_Grades')->onDelete('cascade');
-            $table->foreign('subgrade_id')->references('subgrade_id')->on('M_Subgrades')->onDelete('cascade');
-            $table->foreign('major_id')->references('major_id')->on('M_Majors')->onDelete('cascade');
-            $table->foreign('teacher_id')->references('teacher_id')->on('M_Teachers')->onDelete('cascade');
         });
     }
 

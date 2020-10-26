@@ -14,7 +14,7 @@ class CreateTeachersTable extends Migration
     public function up()
     {
         Schema::create('Teachers', function (Blueprint $table) {
-            $table->increments('t_id')->primary();
+            $table->increments('t_id');
             $table->string('name');
             $table->char('teacher_id')->unique();
             $table->string('address');
@@ -26,8 +26,6 @@ class CreateTeachersTable extends Migration
             $table->date('in_date');
             $table->date('out_date')->nullable();
             $table->timestamps();
-            $table->foreign('course_id')->references('course_id')->on('M_Courses')->onDelete('cascade');
-            $table->foreign('grade_id')->references('grade_id')->on('M_Grades')->onDelete('cascade');
         });
     }
 

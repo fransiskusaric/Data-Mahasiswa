@@ -1,24 +1,4 @@
-//search by name
-// function search() {
-//     var input, filter, table, tr, td, i, txtValue;
-//     input = document.getElementById("search");
-//     filter = input.value.toUpperCase();
-//     table = document.getElementById("table_mahasiswa");
-//     tr = table.getElementsByTagName("tr");
-//     for (i = 0; i < tr.length; i++) {
-//         td = tr[i].getElementsByTagName("td")[0];
-//         if (td) {
-//             txtValue = td.textContent || td.innerText;
-//             if (txtValue.toUpperCase().indexOf(filter) > -1) {
-//                 tr[i].style.display = "";
-//             } else {
-//                 tr[i].style.display = "none";
-//             }
-//         }       
-//     }
-// }
-
-//sorting
+//get date format
 function GetFormattedDate(date) {
     if(date == ''){
         date = new Date().toJSON().slice(0,10);
@@ -33,6 +13,7 @@ function GetFormattedDate(date) {
     return newDate;
 }
 
+//sorting
 function sortTable(n, stat) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     if(stat) {
@@ -60,7 +41,7 @@ function sortTable(n, stat) {
                 y = GetFormattedDate(y.innerHTML);
             } 
             if(!stat) {
-                if(n == 7 || n == 8){
+                if(n == 6 || n == 7){
                     x = GetFormattedDate(x.innerHTML);
                     y = GetFormattedDate(y.innerHTML);
                 }
@@ -88,7 +69,7 @@ function sortTable(n, stat) {
                             }
                         }
                     } else {
-                        if(n != 4 && n != 7 && n != 8){
+                        if(n != 4 && n != 6 && n != 7){
                             alert("here")
                             if (Number(x.innerHTML) > Number(y.innerHTML)) {
                                 shouldSwitch = true;
@@ -125,7 +106,7 @@ function sortTable(n, stat) {
                             }
                         }
                     } else {
-                        if(n != 4 && n != 7 && n != 8){
+                        if(n != 4 && n != 6 && n != 7){
                             if (Number(x.innerHTML) < Number(y.innerHTML)) {
                                 shouldSwitch = true;
                                 break;

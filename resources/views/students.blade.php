@@ -10,19 +10,12 @@
     <!-- untuk paging -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        #astudent { color: #f1f1f1; }
+    </style>
 </head>
 <body style="background-color: #819399">
     @include('topnav')
-    <div class="sidenav">
-        <div style="width:100%;height:60px;border-bottom: 1px solid rgb(195, 255, 252);">
-            <h1><a href="/"><img width="120" height="50" src="/images/logo-project.png"/></a></h1>
-        </div>
-        <div style="padding-top:20px">
-            <a href="/teacherinformation">Teacher Information</a>
-            <a style="color:white" href="/studentinformation">Student Information</a>
-            <a href="#clients">Schedule</a>
-        </div>
-    </div>
     <div id="main" class="main">
         <div class="card-body">
             @if(!empty($list_student))
@@ -39,6 +32,14 @@
     </div>
     <script type="text/javascript" src="{{ asset('js/topnav.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/sort.js') }}"></script>
+    <script type="text/javascript"> //open menu
+        var button = document.getElementById("myMenu"), count = 0;
+        button.onclick = function() {
+            count += 1;
+            if(count % 2 == 1) openNav();
+            else closeNav();
+        };
+    </script>
     <script> //paging with ajax
         $(document).ready(function(){
             $(document).on('click', '.page a', function(event){

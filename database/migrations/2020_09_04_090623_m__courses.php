@@ -14,7 +14,7 @@ class MCourses extends Migration
     public function up()
     {
         Schema::create('M_Courses', function (Blueprint $table) {
-            $table->id('course_id')->primary();
+            $table->id('course_id');
             $table->string('course');
         });
     }

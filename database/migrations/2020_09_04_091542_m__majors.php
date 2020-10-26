@@ -14,7 +14,7 @@ class MMajors extends Migration
     public function up()
     {
         Schema::create('M_Majors', function (Blueprint $table) {
-            $table->id('major_id')->primary();
+            $table->id('major_id');
             $table->string('major');
         });
     }
