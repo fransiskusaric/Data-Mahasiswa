@@ -16,6 +16,6 @@ class StudentGradeModel extends Model
     ];
 
     public function subgrades() {
-        return $this->belongsToMany('App\MSubgradesModel', 'Student_Subgrade');
+        return $this->belongsToMany('App\MSubgradesModel', 'Student_Subgrade', 'student_grade_id', 'subgrade_id');
     }
 }

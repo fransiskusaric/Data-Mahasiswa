@@ -17,17 +17,26 @@ Route::get('/', function () {
     return view('homepage');
 });
 
+// ================ Student ================
+
 Route::post('importstudent', 'DatasiswaController@importstudents');
 Route::post('importteacher', 'DatasiswaController@importteachers');
 
 Route::get('/studentinformation', 'DatasiswaController@studentpage');
 Route::get('/studentinformation/fetch_student', 'DatasiswaController@fetch_student');
 
-Route::get('/teacherinformation', 'DatasiswaController@teacherpage');
-Route::get('/teacherinformation/fetch_teacher', 'DatasiswaController@fetch_teacher');
-
 Route::get('/studentinformation/editstudent/{id}', 'DatasiswaController@editstudent');
 Route::post('/updatestudent', 'DatasiswaController@updatestudent');
+
+Route::get('/createstudent', 'DatasiswaController@createstudent');
+Route::post('/savestudent', 'DatasiswaController@savestudent');
+
+Route::get('/studentinformation/detailstudent/{id}', 'DatasiswaController@detailstudent');
+
+// ================ Teacher ================
+
+Route::get('/teacherinformation', 'DatasiswaController@teacherpage');
+Route::get('/teacherinformation/fetch_teacher', 'DatasiswaController@fetch_teacher');
 
 Route::get('/teacherinformation/editteacher/{id}', 'DatasiswaController@editteacher');
 Route::post('/updateteacher', 'DatasiswaController@updateteacher');

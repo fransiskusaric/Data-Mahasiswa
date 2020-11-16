@@ -17,6 +17,10 @@ class StudentScores extends Migration
             $table->increments('score_id');
             $table->integer('student_class_id')->unsigned();
             $table->integer('course_grade_id')->unsigned();
+            $table->integer('task')->nullable();
+            $table->integer('mid_test')->nullable();
+            $table->integer('final_test')->nullable();
+            $table->integer('score')->nullable();
             $table->timestamps();
         });
     }

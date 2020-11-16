@@ -15,6 +15,7 @@ class MSubgrades extends Migration
     {
         Schema::create('M_Subgrades', function (Blueprint $table) {
             $table->id('subgrade_id');
+            $table->string('subgrade');
         });
     }
 

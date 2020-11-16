@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://mdbootstrap.com/docs/jquery/utilities/borders/" />
     <link rel="stylesheet" href="{{ asset('css/style.css')}}" />
+    <!-- import icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
     <!-- untuk paging -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -18,15 +20,24 @@
     @include('topnav')
     <div id="main" class="main">
         <div class="card-body">
-            @if(!empty($list_student))
             <h1>DAFTAR SISWA</h1>
             <div style="font-size:14px">
                 <label>Number of rows :</label> 
                 <input type="number" id="number" style="width:50px" name="number" min="1" value="20" />
             </div>
+            <button onclick="window.location='{{url("/createstudent")}}'" class="btn btn-tambah"></button>
+            <div style="max-width:400px;margin:auto;float:right">
+                <div class="input-icons"> 
+                    <i class="fa fa-search icon"></i>
+                    <input type="text" class="form-control search" placeholder="Search Nama.." />
+                </div>
+            </div>
+            @if(count($list_student) > 0)
             <div id="data_table">
                 @include('tablestudent')
             </div>
+            @else
+                <h2>Tidak ditemukan data murid</h2>
             @endif
         </div>
     </div>
@@ -80,6 +91,20 @@
                 }
             })
         }
+    </script>
+    <script type="text/javascript"> //search
+        $('.search').on('keyup',function(){
+            $value = $(this).val();
+            var num = document.getElementById("number").value;
+            $.ajax({
+                url: "/studentinformation?search="+$value,
+                type: "get",
+                data: {"search" : $value, "rows" : num},
+                success:function(data){
+                    $('#data_table').html(data);
+                }
+            });
+        })
     </script>
 </body>
 </html>

@@ -16,7 +16,7 @@ class StudentClass extends Migration
         Schema::create('Student_Class', function (Blueprint $table) {
             $table->increments('student_class_id');
             $table->integer('student_subgrade_id')->unsigned();
-            $table->string('class_id', 5);
+            $table->string('classroom_id', 5);
             $table->timestamps();
         });
     }

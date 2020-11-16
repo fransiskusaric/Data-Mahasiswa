@@ -18,6 +18,6 @@ class MStudentsModel extends Model
     ];
 
     public function grades() {
-        return $this->belongsToMany('App\MGradesModel', 'Student_Grade');
+        return $this->belongsToMany('App\MGradesModel', 'Student_Grade', 'student_id', 'grade_id');
     }
 }

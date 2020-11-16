@@ -7,16 +7,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://mdbootstrap.com/docs/jquery/utilities/borders/" />
     <link rel="stylesheet" href="{{ asset('css/style.css')}}" />
+    <style>
+        #astudent { color: #f1f1f1; }
+    </style>
 </head>
 <body style="background-color: #819399">
     @include('topnav')
-    <div id="main">
-        <h1>Website Data Siswa<h1>
-        <div class="center">
-            <a href="/teacherinformation"><img width="300" height="240" src="/images/teacher1.png"/></a>
-        </div>
-        <div class="center">
-        <a style="padding-top: 50px" href="/studentinformation"><img width="300" height="240" src="/images/student1.png"/></a>
+    <div id="main" class="main">
+        <div class="card-body">
+            <p>Nama<span style="display:inline-block; width: 14px;"></span>: {{$student->name}}</p>
+            <p>Tingkat<span style="display:inline-block; width: 4px;"></span>: </p>
+            <p>Kelas<span style="display:inline-block; width: 20px;"></span>:</P>
         </div>
     </div>
     <script type="text/javascript" src="{{ asset('js/topnav.js')}}"></script>

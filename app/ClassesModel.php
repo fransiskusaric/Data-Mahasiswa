@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class ClassesModel extends Model
 {
     protected $table    = 'Classes';
-    protected $primaryKey = 'class_id';
+    protected $primaryKey = 'classroom_id';
+    public $incrementing = false;
     protected $fillable = [
-                            'class_id',
+                            'classroom_id',
                             'grade_id',
                             'subgrade_id',
                             'classroom',
@@ -22,7 +23,7 @@ class ClassesModel extends Model
     }
 
     public function studentSubgrade() {
-        return $this->belongsToMany('App\StudentSubgradeModel', 'Student_Class');
+        return $this->belongsToMany('App\StudentSubgradeModel', 'Student_Class', 'classroom_id', 'student_subgrade_id');
     }
 
     public function teachers() {

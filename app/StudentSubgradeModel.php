@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StudentSubgrade extends Model
+class StudentSubgradeModel extends Model
 {
     protected $table    = 'Student_Subgrade';
     protected $primaryKey = 'student_subgrade_id';
@@ -14,6 +14,6 @@ class StudentSubgrade extends Model
     ];
 
     public function classes() {
-        return $this->belongsToMany('App\ClassesModel', 'Student_Class');
+        return $this->belongsToMany('App\ClassesModel', 'Student_Class', 'student_subgrade_id', 'classroom_id');
     }
 }

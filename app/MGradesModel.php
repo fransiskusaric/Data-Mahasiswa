@@ -22,6 +22,6 @@ class MGradesModel extends Model
     }
 
     public function students() {
-        return $this->belongsToMany('App\MStudentsModel', 'Student_Grade');
+        return $this->belongsToMany('App\MStudentsModel', 'Student_Grade', 'grade_id', 'student_id');
     }
 }

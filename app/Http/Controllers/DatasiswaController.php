@@ -36,10 +36,11 @@ class DatasiswaController extends Controller
     {
         if($request->ajax()) {
             $number = $request->rows;
-            $list_student = StudentsModel::with(['grades', 'majors', 'classes'])->paginate($number);
+            $search = $request->search;
+            $list_student = MStudentsModel::where('name', 'LIKE', '%'.$search.'%')->paginate($number);
             return view('tablestudent', ['list_student' => $list_student])->render();
         } else {
-            $list_student = StudentsModel::with(['grades', 'majors', 'classes'])->paginate(20);
+            $list_student = MStudentsModel::with('grades')->paginate(20);
 
             return view('students', ['list_student' => $list_student]);
         }
@@ -165,6 +166,86 @@ class DatasiswaController extends Controller
         return redirect()->back();
     }
 
+    public function createstudent()
+    {
+        $grades = MGradesModel::all();
+        $subgrades = MSubgradesModel::all();
+        $majors = MMajorsModel::all();
+        $classes = ClassesModel::all();
+        
+        return view('createstudent', ['grade' => $grades, 'subgrade' => $subgrades, 'major' => $majors, 'classes' => $classes]);
+    }
+
+    public function savestudent()
+    {
+        $name = request('name');
+        $student_id = request('student_id');
+        $address = request('address');
+        $city = request('city');
+        $birth_date = request('birth_date');
+        $phone = request('phone');
+        $grade_id = request('grade_id');
+        $subgrade_id = request('subgrade_id');
+        $classroom_id = request('classroom_id');
+        $major_id = request('major_id');
+        $enroll_date = request('enroll_date');
+        $grad_date = request('grad_date');
+
+
+        $student = new MStudentsModel();
+        $student->name = $name;
+        $student->student_id = $student_id;
+        $student->address = $address;
+        $student->city = $city;
+        $student->birth_date = $birth_date;
+        $student->phone = $phone;
+        $student->save();
+
+        $grade = new StudentGradeModel();
+        $grade->student_id = $student_id;
+        $grade->grade_id = $grade_id;
+        $grade->enroll_date = $enroll_date;
+        $grade->grad_date = $grad_date;
+        $grade->save();
+
+        $student_grade = StudentGradeModel::orderBy('student_grade_id', 'desc')->first();
+
+        $subgrade = new StudentSubgradeModel();
+        $subgrade->student_grade_id = $student_grade->student_grade_id;
+        $subgrade->subgrade_id = $subgrade_id;
+        $subgrade->save();
+
+        $student_subgrade = StudentSubgradeModel::orderBy('student_subgrade_id', 'desc')->first();
+
+        $classroom = new StudentClassModel();
+        $classroom->student_subgrade_id = $student_subgrade->student_subgrade_id;
+        $classroom->classroom_id = $classroom_id;
+        $classroom->save();
+
+        $student_class = StudentClassModel::orderBy('student_class_id', 'desc')->first();
+        if($major_id) {
+            $course_grade = CourseGradeModel::where([['grade_id', $grade_id], ['major_id', $major_id]])
+                ->orWhere([['grade_id', $grade_id], ['major_id', null]])
+                ->get();
+        } else {
+            $course_grade = CourseGradeModel::where('grade_id', $grade_id)->get();
+        }
+
+        foreach($course_grade as $cg) {
+            $scores = new StudentScoresModel();
+            $scores->student_class_id = $student_class->student_class_id;
+            $scores->course_grade_id = $cg->course_grade_id;
+            $scores->save();
+        } 
+        
+        return redirect('/studentinformation')->with('success', 'New student added successfully!');
+    }
+
+    public function detailstudent($id) {
+        $student = MStudentsModel::with(['grades'])->where('s_id', $id)->first();
+        return view('detailstudent', ['student' => $student]);
+    }
+
     function insert($id, $i) {
         $score = new ScoresModel;
         $score->student_id = $id;
@@ -185,6 +266,17 @@ class DatasiswaController extends Controller
     }
 
     // |=================== TEACHERS ===================|
+    public function importteachers(Request $request)
+    {
+        $request->validate([
+            'Teachers' => 'required'
+        ]);
+        
+        Excel::import(new TeachersImport, request()->file('Teachers'));
+
+        return redirect()->back();
+    }
+
     public function teacherpage(Request $request)
     {
         if($request->ajax()) {
@@ -235,17 +327,6 @@ class DatasiswaController extends Controller
         $teacher->save();
 
         return redirect('/teacherinformation')->with('success', 'Teacher updated!');
-    }
-
-    public function importteachers(Request $request)
-    {
-        $request->validate([
-            'Teachers' => 'required'
-        ]);
-        
-        Excel::import(new TeachersImport, request()->file('Teachers'));
-
-        return redirect()->back();
     }
 
     public function createteacher()

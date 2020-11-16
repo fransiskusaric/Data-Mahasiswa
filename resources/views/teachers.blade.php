@@ -36,7 +36,6 @@
         </div>
     @endif
         <div class="card-body">
-            @if(!empty($list_teacher))
             <h1>DAFTAR GURU</h1>
             <div style="font-size:14px">
                 <label>Number of rows :</label> 
@@ -46,12 +45,15 @@
             <div style="max-width:400px;margin:auto;float:right">
                 <div class="input-icons"> 
                     <i class="fa fa-search icon"></i>
-                    <input type="text" class="form-control" id="search" placeholder="Search Nama.." />
+                    <input type="text" class="form-control search" placeholder="Search Nama.." />
                 </div>
             </div>
-            <div id="data_table">
-                @include('tableteacher')
-            </div>
+            @if(count($list_teacher) > 0)
+                <div id="data_table">
+                    @include('tableteacher')
+                </div>
+            @else
+                <h2>Tidak ditemukan data guru</h2>
             @endif
         </div>
     </div>
@@ -109,7 +111,7 @@
         }
     </script>
     <script type="text/javascript"> //search
-        $('#search').on('keyup',function(){
+        $('.search').on('keyup',function(){
             $value = $(this).val();
             var num = document.getElementById("number").value;
             $.ajax({

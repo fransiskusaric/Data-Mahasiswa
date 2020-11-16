@@ -10,7 +10,11 @@ class StudentScoresModel extends Model
     protected $primaryKey = 'score_id';
     protected $fillable = [
                             'student_class_id',
-                            'course_grade_id'
+                            'course_grade_id',
+                            'task',
+                            'mid_test',
+                            'final_test',
+                            'score'
     ];
 
     public function courseScore() {

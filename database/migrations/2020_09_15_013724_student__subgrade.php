@@ -14,7 +14,7 @@ class StudentSubgrade extends Migration
     public function up()
     {
         Schema::create('Student_Subgrade', function (Blueprint $table) {
-            $table->id('student_subgrade_id');
+            $table->increments('student_subgrade_id');
             $table->integer('student_grade_id')->unsigned();
             $table->integer('subgrade_id')->unsigned();
             $table->timestamps();

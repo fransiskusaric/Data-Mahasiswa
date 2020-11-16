@@ -43,7 +43,7 @@
             <input type="text" name="phone" class="form-control" required="required" value="<?php echo $student->phone ?? '' ?>" placeholder="Masukan No Telp"/>
         </div>
         <div class="input-group">
-            <select id="grade" name="grade_id" class="form-control" required="required" onchange="checkgrade()">
+            <select id="grades" name="grade_id" class="form-control" required="required" onchange="checkGrade()">
                 @if(!empty($student))
                     <option value='<?php echo $student->grade_id ?>' selected hidden><?php echo $student->grades->grade ?></option>
                 @endif
@@ -55,45 +55,71 @@
                 @endforeach
             </select>
         </div>
-        <div id="formmajor" <?php if($student->grade_id == 5){echo 'class="input-group"';} ?>>
-            <select id="majors" name="major_id" class="form-control" onchange="checkmajor()" <?php if($student->grade_id == 5){echo 'required="required"';}else{echo 'disabled';} ?>>
+        <div class="input-group">
+            @if(!empty($student))
+                <select id="subgrades" name="subgrade_id" class="form-control" required="required" onchange="checkSubgrade()">
+            @else
+                <select id="subgrades" name="subgrade_id" class="form-control" required="required" onchange="checkSubgrade()" disabled>
+            @endif
+                @if(!empty($student))
+                    <option value='<?php echo $student->grade_id ?>' selected hidden><?php echo $student->grades->grade ?></option>
+                @endif
+                @if(empty($student))
+                    <option value='' selected hidden>Pilih Kelas</option>
+                @endif
+                @foreach($subgrade as $sg)
+                    <option class="subgrade" value='<?php echo $sg->subgrade_id ?>'><?php echo $sg->subgrade ?></option>
+                @endforeach
+            </select>
+        </div>
+        @if(!empty($student))
+            <div id="formmajor" <?php if($student->grade_id == 4){echo 'class="input-group"';} ?>>
+                <select id="majors" name="major_id" class="form-control" onchange="checkMajor()" <?php if($student->grade_id == 5){echo 'required="required"';}else{echo 'disabled';} ?>>
+        @else
+            <div id="formmajor">
+                <select id="majors" name="major_id" class="form-control" onchange="checkMajor()" disabled>
+        @endif
                 <option value='' selected hidden>Pilih Jurusan</option>
                 @if(!empty($student))
-                    <option id="major" value='<?php echo $student->major_id ?? '' ?>' selected hidden><?php echo $student->majors->major ?? 'Pilih Jurusan' ?></option>
+                    <option value='<?php echo $student->major_id ?? '' ?>' selected hidden><?php echo $student->majors->major ?? 'Pilih Jurusan' ?></option>
                 @endif
                 @if(empty($student))
                     <option value='' selected hidden>Pilih Jurusan</option>
                 @endif
                 @foreach($major as $m)
-                    <option value='<?php echo $m->major_id ?>'><?php echo $m->major ?></option>
+                    <option class="major" value='<?php echo $m->major_id ?>'><?php echo $m->major ?></option>
                 @endforeach
             </select>
         </div>
         <div class="input-group">
-            <select id="classroom" name="classroom" class="form-control" required="required" onchange="checkclass()">
-                <option value='' selected hidden>Pilih Kelas</option>
+            @if(!empty($student))
+                <select id="classes" name="classroom_id" class="form-control" required="required" onchange="checkClass()">
+            @else
+                <select id="classes" name="classroom_id" class="form-control" required="required" onchange="checkClass()" disabled>
+            @endif
+                <option value='' selected hidden>Pilih Ruang Kelas</option>
                 @if(!empty($student))
                     <option value='<?php echo $student->classroom ?>' selected hidden><?php echo $student->classes->room ?></option>
                 @endif
                 @if(empty($student))
-                    <option value='' selected hidden>Pilih Kelas</option>
+                    <option value='' selected hidden>Pilih Ruang Kelas</option>
                 @endif
-                @foreach($class as $c)
-                    <option class='hide' data-check-grade='<?php echo $c->grade_id ?>' value='<?php echo $c->room_id ?>'><?php echo $c->room ?></option>
+                @foreach($classes as $c)
+                    <option class="classroom" value='<?php echo $c->classroom_id ?>'><?php echo $c->classroom ?></option>
                 @endforeach
             </select>
         </div>
         <div class="input-group">
-            <input type="text" name="enroll_year" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')" required="required" value="<?php echo $student->enroll_year ?? '' ?>" placeholder="Masukan Tanggal Masuk"/>
+            <input type="text" name="enroll_date" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')" required="required" value="<?php echo $student->enroll_year ?? '' ?>" placeholder="Masukan Tanggal Masuk"/>
         </div>
         <div>
-            <input type="text" name="grad_year" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?php echo $student->grad_year ?? '' ?>" placeholder="Masukan Tanggal Lulus"/>
+            <input type="text" name="grad_date" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?php echo $student->grad_year ?? '' ?>" placeholder="Masukan Tanggal Lulus"/>
         </div>
         @yield('close')
     </div>
     <script type="text/javascript" src="{{ asset('js/topnav.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('js/form.js') }}"></script>
-    <script> //onload hide class
+    <script type="text/javascript" src="{{ asset('js/formstudent.js') }}"></script>
+    <!-- <script> //onload hide class
         document.onreadystatechange = () => {
             if(document.readyState === 'interactive') {
                 var grade = document.getElementById("grade");
@@ -109,6 +135,6 @@
                 }
             }
         }
-    </script>
+    </script> -->
 </body>
 </html>
