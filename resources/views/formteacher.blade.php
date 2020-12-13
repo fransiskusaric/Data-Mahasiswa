@@ -85,6 +85,9 @@
         <div style="width:100%">
             <input type="text" id="outdatet" name="out_date" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?php echo $teacher->out_date ?? '' ?>" placeholder="Masukan Tanggal Keluar"/>
         </div>
+        <div class="form-group" style="float:right">
+            <a class="button cancel" href="/teacherinformation">Cancel</a>
+        </div>
         @yield('close')
     </div>
     <script type="text/javascript" src="{{ asset('js/topnav.js')}}"></script>

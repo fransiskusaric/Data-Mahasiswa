@@ -35,7 +35,6 @@ function checkGrade() {
 
 function checkSubgrade() {
     var subgrade = document.getElementById("subgrades");
-    var major = document.getElementById("majors");
     var classes = document.getElementById("classes");
     var classroom = document.getElementsByClassName("classroom");
 

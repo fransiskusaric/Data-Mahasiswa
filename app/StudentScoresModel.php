@@ -16,8 +16,4 @@ class StudentScoresModel extends Model
                             'final_test',
                             'score'
     ];
-
-    public function courseScore() {
-        return $this->hasOne('App\StudentCourseScoreModel', 'score_id', 'score_id');
-    }
 }

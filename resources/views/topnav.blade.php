@@ -28,5 +28,4 @@
 <div id="mySidenav" class="sidenav">
     <a id="ateacher" href="/teacherinformation">Teacher Information</a>
     <a id="astudent" href="/studentinformation">Student Information</a>
-    <a id="" href="#clients">Schedule</a>
 </div>

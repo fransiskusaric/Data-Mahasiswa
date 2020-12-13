@@ -31,7 +31,7 @@
                     @endif</td>
                     <td><a href="/studentinformation/detailstudent/{{$row['s_id']}}" class="edit"><img width="20" height="20" src="/images/icon-editor.png"/></a>
                         <a>  |  </a>
-                        <a href="/deleteMhs/{{$row['id']}}" class="delete"><img width="20" height="20" src='/images/delete-button.png'/></a></td>
+                        <a href="/studentinformation/deletestudent/{{$row['s_id']}}" class="delete"><img width="20" height="20" src='/images/delete-button.png'/></a></td>
                 </tr>
             @endforeach
         </tbody>

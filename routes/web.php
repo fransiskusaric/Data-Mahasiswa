@@ -25,13 +25,16 @@ Route::post('importteacher', 'DatasiswaController@importteachers');
 Route::get('/studentinformation', 'DatasiswaController@studentpage');
 Route::get('/studentinformation/fetch_student', 'DatasiswaController@fetch_student');
 
-Route::get('/studentinformation/editstudent/{id}', 'DatasiswaController@editstudent');
+Route::get('/studentinformation/detailstudent/edit/{id}', 'DatasiswaController@editstudent');
 Route::post('/updatestudent', 'DatasiswaController@updatestudent');
 
 Route::get('/createstudent', 'DatasiswaController@createstudent');
 Route::post('/savestudent', 'DatasiswaController@savestudent');
 
 Route::get('/studentinformation/detailstudent/{id}', 'DatasiswaController@detailstudent');
+Route::post('/savescore', 'DatasiswaController@savescore');
+
+Route::get('/studentinformation/deletestudent/{id}', 'DatasiswaController@deletestudent');
 
 // ================ Teacher ================
 

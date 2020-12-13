@@ -19,22 +19,22 @@
 <body style="background-color: #819399">
     @include('topnav')
     <div id="main" class="main">
-    @if (session('success'))
-        <div class="alert success">
-            <button data-dismiss="alert">
-                <span class="close-md">&times;</span>
-            </button>
-            <strong>{{ session('success') }}</strong>
-        </div>
-    @endif
-    @if (session('delete'))
-        <div class="alert">
-            <button data-dismiss="alert">
-                <span class="close-md">&times;</span>
-            </button>
-            <strong>{{ session('delete') }}</strong>
-        </div>
-    @endif
+        @if (session('success'))
+            <div class="alert success">
+                <button data-dismiss="alert">
+                    <span class="close-md">&times;</span>
+                </button>
+                <strong>{{ session('success') }}</strong>
+            </div>
+        @endif
+        @if (session('delete'))
+            <div class="alert">
+                <button data-dismiss="alert">
+                    <span class="close-md">&times;</span>
+                </button>
+                <strong>{{ session('delete') }}</strong>
+            </div>
+        @endif
         <div class="card-body">
             <h1>DAFTAR GURU</h1>
             <div style="font-size:14px">
@@ -45,7 +45,7 @@
             <div style="max-width:400px;margin:auto;float:right">
                 <div class="input-icons"> 
                     <i class="fa fa-search icon"></i>
-                    <input type="text" class="form-control search" placeholder="Search Nama.." />
+                    <input type="text" id="search" class="form-control search" placeholder="Search Nama.." />
                 </div>
             </div>
             @if(count($list_teacher) > 0)

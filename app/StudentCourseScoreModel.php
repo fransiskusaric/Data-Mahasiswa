@@ -15,8 +15,4 @@ class StudentCourseScoreModel extends Model
                             'final_test',
                             'score'
     ];
-
-    public function score() {
-        return $this->belongsTo('App\StudentScoresModel', 'score_id', 'score_id');
-    }
 }

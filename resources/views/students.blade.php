@@ -19,6 +19,22 @@
 <body style="background-color: #819399">
     @include('topnav')
     <div id="main" class="main">
+        @if (session('success'))
+            <div class="alert success">
+                <button data-dismiss="alert">
+                    <span class="close-md">&times;</span>
+                </button>
+                <strong>{{ session('success') }}</strong>
+            </div>
+        @endif
+        @if (session('delete'))
+            <div class="alert">
+                <button data-dismiss="alert">
+                    <span class="close-md">&times;</span>
+                </button>
+                <strong>{{ session('delete') }}</strong>
+            </div>
+        @endif
         <div class="card-body">
             <h1>DAFTAR SISWA</h1>
             <div style="font-size:14px">
@@ -29,13 +45,13 @@
             <div style="max-width:400px;margin:auto;float:right">
                 <div class="input-icons"> 
                     <i class="fa fa-search icon"></i>
-                    <input type="text" class="form-control search" placeholder="Search Nama.." />
+                    <input type="text" id="search" class="form-control search" placeholder="Search Nama.." />
                 </div>
             </div>
             @if(count($list_student) > 0)
-            <div id="data_table">
-                @include('tablestudent')
-            </div>
+                <div id="data_table">
+                    @include('tablestudent')
+                </div>
             @else
                 <h2>Tidak ditemukan data murid</h2>
             @endif
@@ -51,20 +67,21 @@
             else closeNav();
         };
     </script>
-    <script> //paging with ajax
+    <script type="text/javascript"> //paging with ajax
         $(document).ready(function(){
             $(document).on('click', '.page a', function(event){
                 event.preventDefault(); //prevent refresh page
                 var page = $(this).attr('href').split('page=')[1];
-                var row = document.getElementById("number").value;
-                fetch_page(page, row);
+                var num = document.getElementById("number").value;
+                var search = document.getElementById("search").value;
+                fetch_page(page, num, search);
             });
 
-            function fetch_page(page, row){
+            function fetch_page(page, num, search){
                 $.ajax({
                     url:"/studentinformation/fetch_student?page="+page,
                     type: "get",
-                    data: {"rows" : row},
+                    data: {"rows" : num, "search" : search},
                     success:function(data){
                         $('#data_table').html(data);
                     }
@@ -72,20 +89,21 @@
             }
         });
     </script>
-    <script> //number of rows
+    <script type="text/javascript"> //number of rows
         document.getElementById("number").addEventListener("keyup", function(event) {
             if (event.keyCode === 13) {
                 event.preventDefault(); //prevent refresh page
                 var num = document.getElementById("number").value;
-                fetch_rows(num);
+                var search = document.getElementById("search").value;
+                fetch_rows(num, search);
             }
         });
 
-        function fetch_rows(num){
+        function fetch_rows(num, search){
             $.ajax({
                 url:"/studentinformation?number="+num,
                 type: "get",
-                data: {"rows" : num},
+                data: {"rows" : num, "search" : search},
                 success:function(data){
                     $('#data_table').html(data);
                 }

@@ -45,7 +45,7 @@
         <div class="input-group">
             <select id="grades" name="grade_id" class="form-control" required="required" onchange="checkGrade()">
                 @if(!empty($student))
-                    <option value='<?php echo $student->grade_id ?>' selected hidden><?php echo $student->grades->grade ?></option>
+                    <option value='<?php echo $student->grade_id ?>' selected hidden><?php echo $student->grade ?></option>
                 @endif
                 @if(empty($student))
                     <option value='' selected hidden>Pilih Tingkat</option>
@@ -61,8 +61,9 @@
             @else
                 <select id="subgrades" name="subgrade_id" class="form-control" required="required" onchange="checkSubgrade()" disabled>
             @endif
+                <option value='' selected hidden>Pilih Kelas</option>
                 @if(!empty($student))
-                    <option value='<?php echo $student->grade_id ?>' selected hidden><?php echo $student->grades->grade ?></option>
+                    <option value='<?php echo $student->subgrade_id ?>' selected hidden><?php echo $student->subgrade ?></option>
                 @endif
                 @if(empty($student))
                     <option value='' selected hidden>Pilih Kelas</option>
@@ -81,7 +82,7 @@
         @endif
                 <option value='' selected hidden>Pilih Jurusan</option>
                 @if(!empty($student))
-                    <option value='<?php echo $student->major_id ?? '' ?>' selected hidden><?php echo $student->majors->major ?? 'Pilih Jurusan' ?></option>
+                    <option value='<?php echo $student->major_id ?? '' ?>' selected hidden><?php echo $student->major ?? 'Pilih Jurusan' ?></option>
                 @endif
                 @if(empty($student))
                     <option value='' selected hidden>Pilih Jurusan</option>
@@ -99,7 +100,7 @@
             @endif
                 <option value='' selected hidden>Pilih Ruang Kelas</option>
                 @if(!empty($student))
-                    <option value='<?php echo $student->classroom ?>' selected hidden><?php echo $student->classes->room ?></option>
+                    <option value='<?php echo $student->classroom_id ?>' selected hidden><?php echo $student->classroom ?></option>
                 @endif
                 @if(empty($student))
                     <option value='' selected hidden>Pilih Ruang Kelas</option>
@@ -110,31 +111,58 @@
             </select>
         </div>
         <div class="input-group">
-            <input type="text" name="enroll_date" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')" required="required" value="<?php echo $student->enroll_year ?? '' ?>" placeholder="Masukan Tanggal Masuk"/>
+            <input type="text" name="enroll_date" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')" required="required" value="<?php echo $student->enroll_date ?? '' ?>" placeholder="Masukan Tanggal Masuk"/>
         </div>
         <div>
-            <input type="text" name="grad_date" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?php echo $student->grad_year ?? '' ?>" placeholder="Masukan Tanggal Lulus"/>
+            <input type="text" name="grad_date" class="form-control" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?php echo $student->grad_date ?? '' ?>" placeholder="Masukan Tanggal Lulus"/>
+        </div>
+        <div class="form-group" style="float:right">
+            @if(!empty($student))
+                <a class="button cancel" href="/studentinformation/detailstudent/{{$student->s_id}}">Cancel</a>
+            @else
+                <a class="button cancel" href="/studentinformation">Cancel</a>
+            @endif
         </div>
         @yield('close')
     </div>
     <script type="text/javascript" src="{{ asset('js/topnav.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/formstudent.js') }}"></script>
-    <!-- <script> //onload hide class
-        document.onreadystatechange = () => {
-            if(document.readyState === 'interactive') {
+    <script type="text/javascript"> //open menu
+        var button = document.getElementById("myMenu"), count = 0;
+        button.onclick = function() {
+            count += 1;
+            if(count % 2 == 1) openNav();
+            else closeNav();
+        };
+    </script>
+    <script type="text/javascript"> //onload hide subgrade, class, major
+        document.addEventListener('readystatechange', function() { 
+            if(document.readyState === "complete") {
                 var grade = document.getElementById("grade");
-                var check = [];
-                var hide = document.getElementsByClassName("hide");
-                for(var i = 0; i < hide.length; i++)
-                    check[i] = hide[i].getAttribute("data-check-grade");
-                for(var i = 0; i < hide.length; i++) {
-                    if(check[i] == grade.value)
-                        hide[i].hidden = false;
-                    else
-                        hide[i].hidden = true;
+                var subgrade = document.getElementById("subgrades");
+                var sg = document.getElementsByClassName("subgrade");
+                var classroom = document.getElementsByClassName("classroom");
+                switch(grade.value) {
+                    case '1': hideNShow(sg, 0, 2, false); break;
+                    case '2': hideNShow(sg, 2, 8, false); break;
+                    case '3': hideNShow(sg, 8, 11, false); break;
+                    case '4': hideNShow(sg, 11, 14, false);
+                }
+                switch(subgrade.value) {
+                    case '1': hideNShow(classroom, 53, 55, false); break;
+                    case '2': hideNShow(classroom, 55, 57, false); break;
+                    case '3': hideNShow(classroom, 29, 33, false); break;
+                    case '4': hideNShow(classroom, 33, 37, false); break;
+                    case '5': hideNShow(classroom, 37, 41, false); break;
+                    case '6': hideNShow(classroom, 41, 45, false); break;
+                    case '7': hideNShow(classroom, 45, 49, false); break;
+                    case '8': hideNShow(classroom, 49, 53, false); break;
+                    case '9': hideNShow(classroom, 20, 23, false); break;
+                    case '10': hideNShow(classroom, 23, 26, false); break;
+                    case '11': hideNShow(classroom, 26, 29, false);
                 }
             }
-        }
-    </script> -->
+        })
+    </script>
 </body>
 </html>
